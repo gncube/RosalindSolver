@@ -21,6 +21,8 @@ public class DNAProcessor
                 case 'T':
                     count.T++;
                     break;
+                default:
+                    throw new ArgumentException($"Invalid nucleotide: {nucleotide}");
             }
         }
         return count;

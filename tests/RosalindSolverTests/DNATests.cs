@@ -21,4 +21,21 @@ public class DNATests
         result.G.Should().Be(17);
         result.T.Should().Be(21);
     }
+
+
+    [Fact]
+    public void CountNucleotides_GivenInvalidNucleotide_ThrowsException()
+    {
+        // Arrange
+        var dna = "AGCTZ";
+        var dnaProcessor = new DNAProcessor();
+
+        // Act
+        Action act = () => dnaProcessor.CountNucleotides(dna);
+
+        // Assert
+        act.Should().Throw<ArgumentException>()
+            .WithMessage("Invalid nucleotide: Z");
+    }
+
 }
