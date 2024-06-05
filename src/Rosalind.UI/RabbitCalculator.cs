@@ -14,4 +14,9 @@ public class RabbitCalculator : IRabbitCalculator
                    litterSize * CalculateRabbitPairs(months - 2, litterSize);
         }
     }
+
+    public long CalculateMortalRabbitPairs(int months, int litterSize, int lifespan)
+    {
+        throw new NotImplementedException();
+    }
 }
