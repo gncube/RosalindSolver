@@ -7,16 +7,35 @@ IDNAReader dnaReader = new FileDNAReader("C:\\REPOS\\RosalindSolver\\tests\\Rosa
 
 var dna = dnaReader.ReadDNA();
 var dnaProcessor = new DNAProcessor();
+
+Console.Write("Enter 1 to count nucleotides, 2 to transcribe DNA into RNA: ");
+var choice = Console.ReadLine();
+
 try
 {
-    var count = dnaProcessor.CountNucleotides(dna);
+    switch (choice)
+    {
+        case "1":
+            var count = dnaProcessor.CountNucleotides(dna);
 
-    Console.WriteLine($"A: {count.A}");
-    Console.WriteLine($"C: {count.C}");
-    Console.WriteLine($"G: {count.G}");
-    Console.WriteLine($"T: {count.T}");
+            Console.WriteLine($"A: {count.A}");
+            Console.WriteLine($"C: {count.C}");
+            Console.WriteLine($"G: {count.G}");
+            Console.WriteLine($"T: {count.T}");
 
-    Console.WriteLine($"{count.A}  {count.C}   {count.G}   {count.T}");
+            Console.WriteLine($"{count.A}  {count.C}   {count.G}   {count.T}");
+
+            break;
+        case "2":
+            var rna = dnaProcessor.Transcribe(dna);
+            Console.WriteLine($"RNA: {rna}");
+            break;
+        default:
+            Console.WriteLine("Invalid choice.");
+            break;
+    }
+
+
 }
 catch (ArgumentException ex)
 {

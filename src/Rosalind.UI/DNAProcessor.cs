@@ -30,6 +30,11 @@ public class DNAProcessor
 
     public string Transcribe(string dna)
     {
+        return dna.Replace('T', 'U');
+    }
+
+    public string Complement(string dna)
+    {
         throw new NotImplementedException();
     }
 }

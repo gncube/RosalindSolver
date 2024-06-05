@@ -53,4 +53,18 @@ public class DNATests
         result.Should().Be(expectedRna);
     }
 
+    [Fact]
+    public void Complement_GivenDNAString_ReturnsComplementString()
+    {
+        // Arrange
+        var dna = "AAAACCCGGT";
+        var expectedComplement = "ACCGGGTTTT";
+        var dnaProcessor = new DNAProcessor();
+
+        // Act
+        var result = dnaProcessor.Complement(dna);
+
+        // Assert
+        result.Should().Be(expectedComplement);
+    }
 }
