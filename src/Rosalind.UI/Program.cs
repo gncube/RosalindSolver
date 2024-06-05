@@ -1,11 +1,9 @@
 ﻿
 using Rosalind.UI;
+using System.IO.Abstractions;
 
-Console.WriteLine("Counting DNA Nucleotides!");
-//Console.WriteLine("Enter a DNA string: ");
-//var dna = Console.ReadLine();
-
-IDNAReader dnaReader = new ConsoleDNAReader();
+//IDNAReader dnaReader = new ConsoleDNAReader();
+IDNAReader dnaReader = new FileDNAReader("C:\\REPOS\\RosalindSolver\\tests\\RosalindSolverTests\\dna.txt", new FileSystem());
 
 var dna = dnaReader.ReadDNA();
 var dnaProcessor = new DNAProcessor();
