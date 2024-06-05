@@ -35,7 +35,28 @@ public class DNAProcessor
 
     public string Complement(string dna)
     {
-        throw new NotImplementedException();
+        var compliment = "";
+
+        for (int i = dna.Length - 1; i >= 0; i--)
+        {
+            switch (dna[i])
+            {
+                case 'A':
+                    compliment += 'T';
+                    break;
+                case 'T':
+                    compliment += 'A';
+                    break;
+                case 'C':
+                    compliment += 'G';
+                    break;
+                case 'G':
+                    compliment += 'C';
+                    break;
+            }
+        }
+
+        return compliment;
     }
 }
 
