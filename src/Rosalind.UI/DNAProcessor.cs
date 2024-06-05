@@ -1,6 +1,14 @@
 ﻿namespace Rosalind.UI;
-public class DNAProcessor
+public class DNAProcessor : IDNAProcessor
 {
+
+    private static readonly Dictionary<char, char> Complements = new Dictionary<char, char>
+    {
+        { 'A', 'T' },
+        { 'T', 'A' },
+        { 'C', 'G' },
+        { 'G', 'C' }
+    };
     public NucleotideCount CountNucleotides(string dna)
     {
         var count = new NucleotideCount();
@@ -39,21 +47,7 @@ public class DNAProcessor
 
         for (int i = dna.Length - 1; i >= 0; i--)
         {
-            switch (dna[i])
-            {
-                case 'A':
-                    compliment += 'T';
-                    break;
-                case 'T':
-                    compliment += 'A';
-                    break;
-                case 'C':
-                    compliment += 'G';
-                    break;
-                case 'G':
-                    compliment += 'C';
-                    break;
-            }
+            compliment += Complements[dna[i]];
         }
 
         return compliment;

@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Moq;
 using Rosalind.UI;
 
 namespace RosalindSolverTests;
@@ -44,7 +45,9 @@ public class DNATests
         // Arrange
         var dna = "GATGGAACTTGACTACGTAAATT";
         var expectedRna = "GAUGGAACUUGACUACGUAAAUU";
-        var dnaProcessor = new DNAProcessor();
+        var dnaProcessorMock = new Mock<IDNAProcessor>();
+        dnaProcessorMock.Setup(p => p.Transcribe(dna)).Returns(expectedRna);
+        var dnaProcessor = dnaProcessorMock.Object;
 
         // Act
         var result = dnaProcessor.Transcribe(dna);

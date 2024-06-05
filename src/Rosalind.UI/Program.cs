@@ -6,7 +6,7 @@ using System.IO.Abstractions;
 IDNAReader dnaReader = new FileDNAReader("C:\\REPOS\\RosalindSolver\\tests\\RosalindSolverTests\\dna.txt", new FileSystem());
 
 var dna = dnaReader.ReadDNA();
-var dnaProcessor = new DNAProcessor();
+IDNAProcessor dnaProcessor = new DNAProcessor();
 
 Console.Write("Enter 1 to count nucleotides, 2 to transcribe DNA into RNA, 3 to find the complement of DNA: ");
 var choice = Console.ReadLine();
@@ -16,21 +16,14 @@ try
     switch (choice)
     {
         case "1":
-            var count = dnaProcessor.CountNucleotides(dna);
-            Console.WriteLine($"A: {count.A}");
-            Console.WriteLine($"C: {count.C}");
-            Console.WriteLine($"G: {count.G}");
-            Console.WriteLine($"T: {count.T}");
-            Console.WriteLine($"{count.A}  {count.C}   {count.G}   {count.T}");
+            CountNucleotides(dnaProcessor, dna);
             break;
 
         case "2":
-            var rna = dnaProcessor.Transcribe(dna);
-            Console.WriteLine($"RNA: {rna}");
+            TranscribeDNA(dnaProcessor, dna);
             break;
         case "3":
-            var complement = dnaProcessor.Complement(dna);
-            Console.WriteLine($"Complement: {complement}");
+            FindComplement(dnaProcessor, dna);
             break;
         default:
             Console.WriteLine("Invalid choice.");
@@ -42,5 +35,27 @@ try
 catch (ArgumentException ex)
 {
     Console.WriteLine(ex.Message);
+}
+
+static void CountNucleotides(IDNAProcessor dnaProcessor1, string s)
+{
+    var count = dnaProcessor1.CountNucleotides(s);
+    Console.WriteLine($"A: {count.A}");
+    Console.WriteLine($"C: {count.C}");
+    Console.WriteLine($"G: {count.G}");
+    Console.WriteLine($"T: {count.T}");
+    Console.WriteLine($"{count.A}  {count.C}   {count.G}   {count.T}");
+}
+
+static void TranscribeDNA(IDNAProcessor dnaProcessor1, string s)
+{
+    var rna = dnaProcessor1.Transcribe(s);
+    Console.WriteLine($"RNA: {rna}");
+}
+
+static void FindComplement(IDNAProcessor dnaProcessor1, string s)
+{
+    var complement = dnaProcessor1.Complement(s);
+    Console.WriteLine($"Complement: {complement}");
 }
 
