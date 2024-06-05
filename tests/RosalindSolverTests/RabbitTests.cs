@@ -10,7 +10,7 @@ public class RabbitTests
         // Arrange
         var months = 5;
         var offspring = 3;
-        var expectedRabbitPairs = 29;
+        var expectedRabbitPairs = 19;
         var rabbitCalculator = new RabbitCalculator();
 
         // Act

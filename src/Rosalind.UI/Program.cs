@@ -22,9 +22,15 @@ try
         case "2":
             TranscribeDNA(dnaProcessor, dna);
             break;
+
         case "3":
             FindComplement(dnaProcessor, dna);
             break;
+
+        case "4":
+            GetRabbitPairs(out var months, out var offspring, out var rabbitCalculator, out var rabbitPairs);
+            break;
+
         default:
             Console.WriteLine("Invalid choice.");
             break;
@@ -57,5 +63,16 @@ static void FindComplement(IDNAProcessor dnaProcessor1, string s)
 {
     var complement = dnaProcessor1.Complement(s);
     Console.WriteLine($"Complement: {complement}");
+}
+
+static void GetRabbitPairs(out int months, out int offspring, out RabbitCalculator rabbitCalculator, out long rabbitPairs)
+{
+    Console.Write("Enter the number of months: ");
+    months = int.Parse(Console.ReadLine());
+    Console.Write("Enter the number of offspring: ");
+    offspring = int.Parse(Console.ReadLine());
+    rabbitCalculator = new RabbitCalculator();
+    rabbitPairs = rabbitCalculator.CalculateRabbitPairs(months, offspring);
+    Console.WriteLine($"Total rabbit pairs: {rabbitPairs}");
 }
 
