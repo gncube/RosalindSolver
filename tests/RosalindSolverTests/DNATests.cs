@@ -38,4 +38,19 @@ public class DNATests
             .WithMessage("Invalid nucleotide: Z");
     }
 
+    [Fact]
+    public void Transcribe_GivenDNAString_ReturnsRNAString()
+    {
+        // Arrange
+        var dna = "GATGGAACTTGACTACGTAAATT";
+        var expectedRna = "GAUGGAACUUGACUACGUAAAUU";
+        var dnaProcessor = new DNAProcessor();
+
+        // Act
+        var result = dnaProcessor.Transcribe(dna);
+
+        // Assert
+        result.Should().Be(expectedRna);
+    }
+
 }

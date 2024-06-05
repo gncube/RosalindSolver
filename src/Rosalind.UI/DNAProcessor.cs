@@ -27,6 +27,11 @@ public class DNAProcessor
         }
         return count;
     }
+
+    public string Transcribe(string dna)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class NucleotideCount
