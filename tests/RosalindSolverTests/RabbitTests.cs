@@ -25,13 +25,12 @@ public class RabbitTests
     {
         // Arrange
         var months = 6;
-        var offspring = 3;
         var lifespan = 3;
         var expectedRabbitPairs = 4;
         var rabbitCalculator = new RabbitCalculator();
 
         // Act
-        var result = rabbitCalculator.CalculateMortalRabbitPairs(months, offspring, lifespan);
+        var result = rabbitCalculator.CalculateMortalRabbitPairs(months, lifespan);
 
         // Assert
         result.Should().Be(expectedRabbitPairs);

@@ -8,7 +8,7 @@ IDNAReader dnaReader = new FileDNAReader("C:\\REPOS\\RosalindSolver\\tests\\Rosa
 var dna = dnaReader.ReadDNA();
 IDNAProcessor dnaProcessor = new DNAProcessor();
 
-Console.Write("Enter 1 to count nucleotides, 2 to transcribe DNA into RNA, 3 to find the complement of DNA: ");
+Console.Write("Enter 1 to count nucleotides, 2 to transcribe DNA into RNA, 3 to find the complement of DNA, 4 to calculate rabbit pairs, 5 to calculate mortal rabbit pairs: ");
 var choice = Console.ReadLine();
 
 try
@@ -28,7 +28,11 @@ try
             break;
 
         case "4":
-            GetRabbitPairs(out var months, out var offspring, out var rabbitCalculator, out var rabbitPairs);
+            GetRabbitPairs();
+            break;
+
+        case "5":
+            GetMortalRabbitPairs();
             break;
 
         default:
@@ -65,14 +69,25 @@ static void FindComplement(IDNAProcessor dnaProcessor1, string s)
     Console.WriteLine($"Complement: {complement}");
 }
 
-static void GetRabbitPairs(out int months, out int offspring, out RabbitCalculator rabbitCalculator, out long rabbitPairs)
+static void GetRabbitPairs()
 {
     Console.Write("Enter the number of months: ");
-    months = int.Parse(Console.ReadLine());
+    var months = int.Parse(Console.ReadLine());
     Console.Write("Enter the number of offspring: ");
-    offspring = int.Parse(Console.ReadLine());
-    rabbitCalculator = new RabbitCalculator();
-    rabbitPairs = rabbitCalculator.CalculateRabbitPairs(months, offspring);
+    var offspring = int.Parse(Console.ReadLine());
+    var rabbitCalculator = new RabbitCalculator();
+    var rabbitPairs = rabbitCalculator.CalculateRabbitPairs(months, offspring);
+    Console.WriteLine($"Total rabbit pairs: {rabbitPairs}");
+}
+
+static void GetMortalRabbitPairs()
+{
+    Console.Write("Enter the number of months: ");
+    var months = int.Parse(Console.ReadLine());
+    Console.Write("Enter the lifespan of rabbits: ");
+    var lifespan = int.Parse(Console.ReadLine());
+    var rabbitCalculator = new RabbitCalculator();
+    var rabbitPairs = rabbitCalculator.CalculateMortalRabbitPairs(months, lifespan);
     Console.WriteLine($"Total rabbit pairs: {rabbitPairs}");
 }
 
