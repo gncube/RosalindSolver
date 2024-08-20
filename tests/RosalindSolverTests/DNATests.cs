@@ -1,6 +1,6 @@
 using FluentAssertions;
 using Moq;
-using Rosalind.UI;
+using Rosalind.UI.Services;
 
 namespace RosalindSolverTests;
 

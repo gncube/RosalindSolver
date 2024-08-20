@@ -1,4 +1,4 @@
-﻿namespace Rosalind.UI;
+﻿namespace Rosalind.UI.Services;
 public class UserInputHandler
 {
     public int GetChoice()
@@ -24,7 +24,7 @@ public class UserInputHandler
             if (string.IsNullOrWhiteSpace(filePath))
             {
                 Console.WriteLine("File path cannot be empty. Please try again.");
-                return String.Empty;
+                return string.Empty;
             }
             else if (!File.Exists(filePath))
             {

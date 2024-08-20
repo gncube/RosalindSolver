@@ -1,4 +1,4 @@
-﻿namespace Rosalind.UI;
+﻿namespace Rosalind.UI.Services;
 
 public interface IDNAProcessor
 {

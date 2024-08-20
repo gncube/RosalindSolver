@@ -1,4 +1,6 @@
-﻿namespace Rosalind.UI;
+﻿using Rosalind.UI.Services;
+
+namespace Rosalind.UI.Operations;
 public class GetRabbitPairsOperation : IOperation
 {
     private readonly RabbitCalculator _rabbitCalculator;

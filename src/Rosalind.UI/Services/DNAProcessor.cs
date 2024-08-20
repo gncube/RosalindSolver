@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Rosalind.UI;
+namespace Rosalind.UI.Services;
 public class DNAProcessor : IDNAProcessor
 {
 

@@ -1,6 +1,8 @@
-﻿using System.IO.Abstractions;
+﻿using Rosalind.UI.Operations;
+using Rosalind.UI.Services;
+using System.IO.Abstractions;
 
-namespace Rosalind.UI;
+namespace Rosalind.UI.Factories;
 public class OperationFactory
 {
     private readonly IDNAProcessor _dnaProcessor;

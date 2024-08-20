@@ -1,6 +1,6 @@
 ﻿using System.IO.Abstractions;
 
-namespace Rosalind.UI;
+namespace Rosalind.UI.Services;
 
 public class FileDNAReader : IDNAReader
 {

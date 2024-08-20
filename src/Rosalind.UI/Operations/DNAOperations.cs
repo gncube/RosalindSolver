@@ -1,4 +1,6 @@
-﻿namespace Rosalind.UI;
+﻿using Rosalind.UI.Services;
+
+namespace Rosalind.UI.Operations;
 public class CountNucleotidesOperation : IOperation
 {
     private readonly IDNAProcessor _dnaProcessor;
