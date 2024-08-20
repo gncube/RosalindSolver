@@ -1,0 +1,15 @@
+﻿namespace Rosalind.UI;
+public class UserInputHandler
+{
+    public int GetChoice()
+    {
+        Console.Write("Enter 1 to count nucleotides, 2 to transcribe DNA into RNA, 3 to find the complement of DNA, 4 to calculate rabbit pairs, 5 to calculate mortal rabbit pairs: ");
+        return int.Parse(Console.ReadLine());
+    }
+
+    public int GetIntInput(string prompt)
+    {
+        Console.Write(prompt);
+        return int.Parse(Console.ReadLine());
+    }
+}
