@@ -20,13 +20,3 @@ catch (ArgumentException ex)
 {
     Console.WriteLine(ex.Message);
 }
-
-
-Console.WriteLine("This is the answer for Question");
-IDNAReader dnaFASTAReader = new FileDNAReader("C:\\REPOS\\RosalindSolver\\tests\\RosalindSolverTests\\Data\\rosalind_gc.txt", new FileSystem());
-
-var fastaStrings = dnaFASTAReader.ReadDNA();
-var result = dnaProcessor.ComputeHighestGCContent(fastaStrings);
-
-Console.WriteLine(result.Label);
-Console.WriteLine(result.GCContent);
