@@ -49,5 +49,6 @@ void DisplayOptions()
     Console.WriteLine("4. Calculate rabbit pairs");
     Console.WriteLine("5. Calculate mortal rabbit pairs");
     Console.WriteLine("6. Compute highest GC content");
+    Console.WriteLine("7. Find motif locations in DNA");
     Console.Write("Enter your choice: ");
 }

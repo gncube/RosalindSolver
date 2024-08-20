@@ -26,6 +26,7 @@ public class OperationFactory
             "4" => new GetRabbitPairsOperation(_userInputHandler),
             "5" => new GetMortalRabbitPairsOperation(_userInputHandler),
             "6" => new ComputeHighestGCContentOperation(_dnaProcessor, string.Empty),
+            "7" => new FindMotifLocationsOperation(_dnaProcessor, string.Empty),
             _ => throw new ArgumentException("Invalid choice.")
         };
 
@@ -38,11 +39,13 @@ public class OperationFactory
                 "2" => new TranscribeDNAOperation(_dnaProcessor, dnaString),
                 "3" => new FindComplementOperation(_dnaProcessor, dnaString),
                 "6" => new ComputeHighestGCContentOperation(_dnaProcessor, dnaString),
+                "7" => new FindMotifLocationsOperation(_dnaProcessor, dnaString),
                 _ => operation
             };
         }
         return operation;
     }
+
 
     private string GetDNAStringFromUser()
     {
@@ -50,5 +53,11 @@ public class OperationFactory
         IDNAReader dnaReader = new FileDNAReader(filePath, _fileSystem);
         return dnaReader.ReadDNA();
     }
+
+    //private string GetMotifStringFromUser()
+    //{
+    //    Console.Write("Enter the motif string: ");
+    //    return Console.ReadLine();
+    //}
 }
 

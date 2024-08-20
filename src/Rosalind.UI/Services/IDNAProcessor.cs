@@ -7,4 +7,5 @@ public interface IDNAProcessor
     string Complement(string dna);
     double ComputeGCContent(string dna);
     GCContentResult ComputeHighestGCContent(string fastaStrings);
+    List<int> FindMotifLocations(string dnaMotifString);
 }

@@ -84,3 +84,24 @@ public class ComputeHighestGCContentOperation : IOperation
     public bool RequiresDNAString() => true;
 }
 
+public class FindMotifLocationsOperation : IOperation
+{
+    private readonly IDNAProcessor _dnaProcessor;
+    private readonly string _motifString;
+
+    public FindMotifLocationsOperation(IDNAProcessor dnaProcessor, string motifString)
+    {
+        _dnaProcessor = dnaProcessor;
+        _motifString = motifString;
+    }
+
+    public void Execute()
+    {
+        var locations = _dnaProcessor.FindMotifLocations(_motifString);
+        Console.WriteLine(string.Join(" ", locations));
+    }
+
+    public bool RequiresDNAString() => true;
+}
+
+

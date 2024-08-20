@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Rosalind.UI;
+using Rosalind.UI.Services;
 using System.IO.Abstractions.TestingHelpers;
 
 namespace RosalindSolverTests;

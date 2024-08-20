@@ -108,4 +108,20 @@ CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGACTGGGAACCTGCGGGCAGTAG
         result.Label.Should().Be(expectedLabel);
         result.GCContent.Should().BeApproximately(expectedGCContent, 0.001);
     }
+
+    [Fact]
+    public void FindMotifLocations_GivenDNAStrings_ReturnsCorrectLocations()
+    {
+        // Arrange
+        var motifString = @"GATATATGCATATACTT
+ATAT";
+        var expectedLocations = new List<int> { 2, 4, 10 };
+        var dnaProcessor = new DNAProcessor();
+
+        // Act
+        var result = dnaProcessor.FindMotifLocations(motifString);
+
+        // Assert
+        result.Should().BeEquivalentTo(expectedLocations);
+    }
 }

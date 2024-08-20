@@ -113,6 +113,24 @@ public class DNAProcessor : IDNAProcessor
             GCContent = highestGCContent
         };
     }
+
+    public List<int> FindMotifLocations(string motifString)
+    {
+        var lines = motifString.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        string s = lines[0];
+        string t = lines[1];
+
+        var locations = new List<int>();
+        for (int i = 0; i <= s.Length - t.Length; i++)
+        {
+            if (s.Substring(i, t.Length) == t)
+            {
+                locations.Add(i + 1);
+            }
+        }
+
+        return locations;
+    }
 }
 
 public class GCContentResult
