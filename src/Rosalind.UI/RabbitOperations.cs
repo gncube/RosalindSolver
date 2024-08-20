@@ -17,12 +17,15 @@ public class GetRabbitPairsOperation : IOperation
         var rabbitPairs = _rabbitCalculator.CalculateRabbitPairs(months, offspring);
         Console.WriteLine($"Total rabbit pairs: {rabbitPairs}");
     }
+
+    public bool RequiresDNAString() => false;
 }
 
 public class GetMortalRabbitPairsOperation : IOperation
 {
     private readonly RabbitCalculator _rabbitCalculator;
     private readonly UserInputHandler _userInputHandler;
+    public bool RequiresDNAString() => false;
 
     public GetMortalRabbitPairsOperation(UserInputHandler userInputHandler)
     {

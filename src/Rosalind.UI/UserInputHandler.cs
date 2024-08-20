@@ -12,4 +12,30 @@ public class UserInputHandler
         Console.Write(prompt);
         return int.Parse(Console.ReadLine());
     }
+
+    public string GetFilePath()
+    {
+        string filePath;
+        do
+        {
+            Console.Write("Enter the file path for the DNA string: ");
+            filePath = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                Console.WriteLine("File path cannot be empty. Please try again.");
+                return String.Empty;
+            }
+            else if (!File.Exists(filePath))
+            {
+                Console.WriteLine("File does not exist. Please try again.");
+            }
+            else
+            {
+                break;
+            }
+        } while (true);
+
+        return filePath;
+    }
 }

@@ -18,6 +18,8 @@ public class CountNucleotidesOperation : IOperation
         Console.WriteLine($"G: {count.G}");
         Console.WriteLine($"T: {count.T}");
     }
+
+    public bool RequiresDNAString() => true;
 }
 
 public class TranscribeDNAOperation : IOperation
@@ -36,6 +38,8 @@ public class TranscribeDNAOperation : IOperation
         var rna = _dnaProcessor.Transcribe(_dna);
         Console.WriteLine($"RNA: {rna}");
     }
+
+    public bool RequiresDNAString() => true;
 }
 
 public class FindComplementOperation : IOperation
@@ -54,5 +58,7 @@ public class FindComplementOperation : IOperation
         var complement = _dnaProcessor.Complement(_dna);
         Console.WriteLine($"Complement: {complement}");
     }
+
+    public bool RequiresDNAString() => true;
 }
 

@@ -2,4 +2,5 @@
 public interface IOperation
 {
     void Execute();
+    bool RequiresDNAString();
 }

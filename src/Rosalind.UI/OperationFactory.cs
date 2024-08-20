@@ -1,28 +1,50 @@
-﻿namespace Rosalind.UI;
+﻿using System.IO.Abstractions;
+
+namespace Rosalind.UI;
 public class OperationFactory
 {
     private readonly IDNAProcessor _dnaProcessor;
-    private readonly string _dnaString;
     private readonly UserInputHandler _userInputHandler;
+    private readonly IFileSystem _fileSystem;
 
-    public OperationFactory(IDNAProcessor dnaProcessor, string dnaString, UserInputHandler userInputHandler)
+    public OperationFactory(IDNAProcessor dnaProcessor, UserInputHandler userInputHandler, IFileSystem fileSystem)
     {
         _dnaProcessor = dnaProcessor;
-        _dnaString = dnaString;
         _userInputHandler = userInputHandler;
+        _fileSystem = fileSystem;
     }
 
     public IOperation CreateOperation(string choice)
     {
-        return choice switch
+        IOperation operation = choice switch
         {
-            "1" => new CountNucleotidesOperation(_dnaProcessor, _dnaString),
-            "2" => new TranscribeDNAOperation(_dnaProcessor, _dnaString),
-            "3" => new FindComplementOperation(_dnaProcessor, _dnaString),
+            "1" => new CountNucleotidesOperation(_dnaProcessor, string.Empty),
+            "2" => new TranscribeDNAOperation(_dnaProcessor, string.Empty),
+            "3" => new FindComplementOperation(_dnaProcessor, string.Empty),
             "4" => new GetRabbitPairsOperation(_userInputHandler),
             "5" => new GetMortalRabbitPairsOperation(_userInputHandler),
             _ => throw new ArgumentException("Invalid choice.")
         };
+
+        if (operation.RequiresDNAString())
+        {
+            string dnaString = GetDNAStringFromUser();
+            operation = choice switch
+            {
+                "1" => new CountNucleotidesOperation(_dnaProcessor, dnaString),
+                "2" => new TranscribeDNAOperation(_dnaProcessor, dnaString),
+                "3" => new FindComplementOperation(_dnaProcessor, dnaString),
+                _ => operation
+            };
+        }
+        return operation;
+    }
+
+    private string GetDNAStringFromUser()
+    {
+        string filePath = _userInputHandler.GetFilePath();
+        IDNAReader dnaReader = new FileDNAReader(filePath, _fileSystem);
+        return dnaReader.ReadDNA();
     }
 }
 
