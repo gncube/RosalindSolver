@@ -1,4 +1,6 @@
-﻿namespace Rosalind.UI;
+﻿using System.Text;
+
+namespace Rosalind.UI;
 public class DNAProcessor : IDNAProcessor
 {
 
@@ -52,6 +54,71 @@ public class DNAProcessor : IDNAProcessor
 
         return compliment;
     }
+
+    public double ComputeGCContent(string dna)
+    {
+        if (string.IsNullOrEmpty(dna))
+        {
+            throw new ArgumentException("DNA string cannot be null or empty");
+        }
+
+        int gcCount = dna.Count(nucleotide => nucleotide == 'G' || nucleotide == 'C');
+        return (double)gcCount / dna.Length * 100;
+    }
+
+    public GCContentResult ComputeHighestGCContent(string fastaStrings)
+    {
+        var lines = fastaStrings.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        string currentLabel = null;
+        StringBuilder currentSequence = new StringBuilder();
+        double highestGCContent = 0;
+        string highestLabel = null;
+
+        foreach (var line in lines)
+        {
+            if (line.StartsWith(">"))
+            {
+                if (currentLabel is not null)
+                {
+                    var gcContent = ComputeGCContent(currentSequence.ToString());
+                    if (gcContent > highestGCContent)
+                    {
+                        highestGCContent = gcContent;
+                        highestLabel = currentLabel;
+                    }
+                }
+                currentLabel = line.Substring(1).Trim();
+                currentSequence.Clear();
+            }
+            else
+            {
+                currentSequence.Append(line.Trim());
+            }
+        }
+
+        // Check the last sequence
+        if (currentLabel is not null)
+        {
+            var gcContent = ComputeGCContent(currentSequence.ToString());
+            if (gcContent > highestGCContent)
+            {
+                highestGCContent = gcContent;
+                highestLabel = currentLabel;
+            }
+        }
+
+        return new GCContentResult
+        {
+            Label = highestLabel,
+            GCContent = highestGCContent
+        };
+    }
+}
+
+public class GCContentResult
+{
+    public string Label { get; set; }
+    public double GCContent { get; set; }
 }
 
 public class NucleotideCount

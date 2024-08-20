@@ -70,4 +70,42 @@ public class DNATests
         // Assert
         result.Should().Be(expectedComplement);
     }
+
+    [Fact]
+    public void ComputeGCContent_GivenDNAString_ReturnsCorrectGCContent()
+    {
+        // Arrange
+        var dna = "AGCTATAG";
+        var expectedGCContent = 37.5; // 3 G/C out of 8 total nucleotides
+        var dnaProcessor = new DNAProcessor();
+
+        // Act
+        var result = dnaProcessor.ComputeGCContent(dna);
+
+        // Assert
+        result.Should().BeApproximately(expectedGCContent, 0.001);
+    }
+
+    [Fact]
+    public void ComputeHighestGCContent_GivenFastaFormatStrings_ReturnsLabelAndGCContent()
+    {
+        // Arrange
+        var fastaStrings = @">Rosalind_6404
+CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCCTCCCACTAATAATTCTGAGG
+>Rosalind_5959
+CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAGGCGCTCCGCCGAAGGTCTATATCCATTTGTCAGCAGACACGC
+>Rosalind_0808
+CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGACTGGGAACCTGCGGGCAGTAGGTGGAAT";
+
+        var expectedLabel = "Rosalind_0808";
+        var expectedGCContent = 60.919540; // GC content of the string with the highest GC content
+        var dnaProcessor = new DNAProcessor();
+
+        // Act
+        var result = dnaProcessor.ComputeHighestGCContent(fastaStrings);
+
+        // Assert
+        result.Label.Should().Be(expectedLabel);
+        result.GCContent.Should().BeApproximately(expectedGCContent, 0.001);
+    }
 }
